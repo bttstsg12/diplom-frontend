@@ -9,13 +9,15 @@ import { FC, useEffect, useState } from "react"
 
 const Page: FC = () => {
     const router = useRouter()
-    const { token, logout } = useAuth()
+    const { token, setPlanType, logout } = useAuth()
+
     const [data, setData] = useState<{
         user: {
             id: number
             username: string
         },
         credits: {
+            planType: string
             createLimit: number
             editLimit: number
         }
@@ -37,11 +39,13 @@ const Page: FC = () => {
 
         const data = await me.json()
 
+
         if (!data.success) {
             alert(data.message)
             return
         }
 
+        setPlanType(data.credits.planType)
         setData(data)
     }
 

@@ -11,7 +11,7 @@ interface GenerateResult {
 
 }
 const Page: FC = () => {
-    const { token } = useAuth()
+    const { token, planType } = useAuth()
     console.log('token: ', token);
 
     const buttons: ImageButtonProps[] = [
@@ -97,6 +97,22 @@ const Page: FC = () => {
                     <span>
                         <input checked={type === 'classic'} onChange={() => { setType('classic') }} type="checkbox" /> Энгийн зураг
                     </span>
+
+                    {
+                        planType === 'Premium' && (
+                            <span>
+                                <input checked={type === 'realism'} onChange={() => { setType('realism') }} type="checkbox" /> Риализм
+                            </span>
+                        )
+                    }
+
+{
+                        planType === 'Premium' && (
+                            <span>
+                                <input checked={type === 'abstract'} onChange={() => { setType('abstract') }} type="checkbox" /> Абстракт
+                            </span>
+                        )
+                    }
                 </div>
                 <div className="flex flex-col p-4 gap-4">
                     <Title title="Текст оруулах" />
